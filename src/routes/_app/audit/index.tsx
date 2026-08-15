@@ -14,10 +14,10 @@ export const Route = createFileRoute("/_app/audit/")({
       { property: "og:description", content: "Immutable, exportable audit evidence for every governed decision, override and policy change." },
     ],
   }),
-  component: Audit & Evidence,
+  component: AuditPage,
 });
 
-function Audit & Evidence() {
+function AuditPage() {
   const { agents, policies, queue, incidents, auditEvents, state } = useEdon();
   void agents; void policies; void queue; void incidents; void auditEvents; void state;
   return (

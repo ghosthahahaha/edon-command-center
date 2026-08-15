@@ -14,10 +14,10 @@ export const Route = createFileRoute("/_app/settings/organization")({
       { property: "og:description", content: "Organization profile, departments, environments and governance defaults for EDON." },
     ],
   }),
-  component: Organization settings,
+  component: OrganizationSettings,
 });
 
-function Organization settings() {
+function OrganizationSettings() {
   const { agents, policies, queue, incidents, auditEvents, state } = useEdon();
   void agents; void policies; void queue; void incidents; void auditEvents; void state;
   return (
