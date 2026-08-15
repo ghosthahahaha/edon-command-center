@@ -12,12 +12,17 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
+import { Route as AppAuditIndexRouteImport } from './routes/_app/audit/index'
 import { Route as AppEncodingIndexRouteImport } from './routes/_app/encoding/index'
 import { Route as AppEncodingConnectorsRouteImport } from './routes/_app/encoding/connectors'
 import { Route as AppEncodingSourcesRouteImport } from './routes/_app/encoding/sources'
+import { Route as AppOperationsIndexRouteImport } from './routes/_app/operations/index'
+import { Route as AppPoliciesIndexRouteImport } from './routes/_app/policies/index'
 import { Route as AppRuntimesIndexRouteImport } from './routes/_app/runtimes/index'
 import { Route as AppRuntimesIdRouteImport } from './routes/_app/runtimes/$id'
 import { Route as AppRuntimesRegisterRouteImport } from './routes/_app/runtimes/register'
+import { Route as AppSettingsOrganizationRouteImport } from './routes/_app/settings/organization'
+import { Route as AppSimulationsIndexRouteImport } from './routes/_app/simulations/index'
 import { Route as AppWorkQueueIndexRouteImport } from './routes/_app/work-queue/index'
 import { Route as AppWorkQueueIdRouteImport } from './routes/_app/work-queue/$id'
 import { Route as AppEncodingIrIdRouteImport } from './routes/_app/encoding/ir/$id'
@@ -36,6 +41,11 @@ const AppDashboardRoute = AppDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AppRoute,
 } as any)
+const AppAuditIndexRoute = AppAuditIndexRouteImport.update({
+  id: '/audit/',
+  path: '/audit/',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppEncodingIndexRoute = AppEncodingIndexRouteImport.update({
   id: '/encoding/',
   path: '/encoding/',
@@ -51,6 +61,16 @@ const AppEncodingSourcesRoute = AppEncodingSourcesRouteImport.update({
   path: '/encoding/sources',
   getParentRoute: () => AppRoute,
 } as any)
+const AppOperationsIndexRoute = AppOperationsIndexRouteImport.update({
+  id: '/operations/',
+  path: '/operations/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPoliciesIndexRoute = AppPoliciesIndexRouteImport.update({
+  id: '/policies/',
+  path: '/policies/',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppRuntimesIndexRoute = AppRuntimesIndexRouteImport.update({
   id: '/runtimes/',
   path: '/runtimes/',
@@ -64,6 +84,16 @@ const AppRuntimesIdRoute = AppRuntimesIdRouteImport.update({
 const AppRuntimesRegisterRoute = AppRuntimesRegisterRouteImport.update({
   id: '/runtimes/register',
   path: '/runtimes/register',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsOrganizationRoute = AppSettingsOrganizationRouteImport.update({
+  id: '/settings/organization',
+  path: '/settings/organization',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSimulationsIndexRoute = AppSimulationsIndexRouteImport.update({
+  id: '/simulations/',
+  path: '/simulations/',
   getParentRoute: () => AppRoute,
 } as any)
 const AppWorkQueueIndexRoute = AppWorkQueueIndexRouteImport.update({
@@ -89,9 +119,14 @@ export interface FileRoutesByFullPath {
   '/encoding/sources': typeof AppEncodingSourcesRoute
   '/runtimes/$id': typeof AppRuntimesIdRoute
   '/runtimes/register': typeof AppRuntimesRegisterRoute
+  '/settings/organization': typeof AppSettingsOrganizationRoute
   '/work-queue/$id': typeof AppWorkQueueIdRoute
+  '/audit/': typeof AppAuditIndexRoute
   '/encoding/': typeof AppEncodingIndexRoute
+  '/operations/': typeof AppOperationsIndexRoute
+  '/policies/': typeof AppPoliciesIndexRoute
   '/runtimes/': typeof AppRuntimesIndexRoute
+  '/simulations/': typeof AppSimulationsIndexRoute
   '/work-queue/': typeof AppWorkQueueIndexRoute
   '/encoding/ir/$id': typeof AppEncodingIrIdRoute
 }
@@ -102,9 +137,14 @@ export interface FileRoutesByTo {
   '/encoding/sources': typeof AppEncodingSourcesRoute
   '/runtimes/$id': typeof AppRuntimesIdRoute
   '/runtimes/register': typeof AppRuntimesRegisterRoute
+  '/settings/organization': typeof AppSettingsOrganizationRoute
   '/work-queue/$id': typeof AppWorkQueueIdRoute
+  '/audit': typeof AppAuditIndexRoute
   '/encoding': typeof AppEncodingIndexRoute
+  '/operations': typeof AppOperationsIndexRoute
+  '/policies': typeof AppPoliciesIndexRoute
   '/runtimes': typeof AppRuntimesIndexRoute
+  '/simulations': typeof AppSimulationsIndexRoute
   '/work-queue': typeof AppWorkQueueIndexRoute
   '/encoding/ir/$id': typeof AppEncodingIrIdRoute
 }
@@ -117,9 +157,14 @@ export interface FileRoutesById {
   '/_app/encoding/sources': typeof AppEncodingSourcesRoute
   '/_app/runtimes/$id': typeof AppRuntimesIdRoute
   '/_app/runtimes/register': typeof AppRuntimesRegisterRoute
+  '/_app/settings/organization': typeof AppSettingsOrganizationRoute
   '/_app/work-queue/$id': typeof AppWorkQueueIdRoute
+  '/_app/audit/': typeof AppAuditIndexRoute
   '/_app/encoding/': typeof AppEncodingIndexRoute
+  '/_app/operations/': typeof AppOperationsIndexRoute
+  '/_app/policies/': typeof AppPoliciesIndexRoute
   '/_app/runtimes/': typeof AppRuntimesIndexRoute
+  '/_app/simulations/': typeof AppSimulationsIndexRoute
   '/_app/work-queue/': typeof AppWorkQueueIndexRoute
   '/_app/encoding/ir/$id': typeof AppEncodingIrIdRoute
 }
@@ -132,9 +177,14 @@ export interface FileRouteTypes {
     | '/encoding/sources'
     | '/runtimes/$id'
     | '/runtimes/register'
+    | '/settings/organization'
     | '/work-queue/$id'
+    | '/audit/'
     | '/encoding/'
+    | '/operations/'
+    | '/policies/'
     | '/runtimes/'
+    | '/simulations/'
     | '/work-queue/'
     | '/encoding/ir/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -145,9 +195,14 @@ export interface FileRouteTypes {
     | '/encoding/sources'
     | '/runtimes/$id'
     | '/runtimes/register'
+    | '/settings/organization'
     | '/work-queue/$id'
+    | '/audit'
     | '/encoding'
+    | '/operations'
+    | '/policies'
     | '/runtimes'
+    | '/simulations'
     | '/work-queue'
     | '/encoding/ir/$id'
   id:
@@ -159,9 +214,14 @@ export interface FileRouteTypes {
     | '/_app/encoding/sources'
     | '/_app/runtimes/$id'
     | '/_app/runtimes/register'
+    | '/_app/settings/organization'
     | '/_app/work-queue/$id'
+    | '/_app/audit/'
     | '/_app/encoding/'
+    | '/_app/operations/'
+    | '/_app/policies/'
     | '/_app/runtimes/'
+    | '/_app/simulations/'
     | '/_app/work-queue/'
     | '/_app/encoding/ir/$id'
   fileRoutesById: FileRoutesById
@@ -194,6 +254,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppDashboardRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/audit/': {
+      id: '/_app/audit/'
+      path: '/audit'
+      fullPath: '/audit/'
+      preLoaderRoute: typeof AppAuditIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/encoding/': {
       id: '/_app/encoding/'
       path: '/encoding'
@@ -215,6 +282,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppEncodingSourcesRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/operations/': {
+      id: '/_app/operations/'
+      path: '/operations'
+      fullPath: '/operations/'
+      preLoaderRoute: typeof AppOperationsIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/policies/': {
+      id: '/_app/policies/'
+      path: '/policies'
+      fullPath: '/policies/'
+      preLoaderRoute: typeof AppPoliciesIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/runtimes/': {
       id: '/_app/runtimes/'
       path: '/runtimes'
@@ -234,6 +315,20 @@ declare module '@tanstack/react-router' {
       path: '/runtimes/register'
       fullPath: '/runtimes/register'
       preLoaderRoute: typeof AppRuntimesRegisterRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/settings/organization': {
+      id: '/_app/settings/organization'
+      path: '/settings/organization'
+      fullPath: '/settings/organization'
+      preLoaderRoute: typeof AppSettingsOrganizationRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/simulations/': {
+      id: '/_app/simulations/'
+      path: '/simulations'
+      fullPath: '/simulations/'
+      preLoaderRoute: typeof AppSimulationsIndexRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/work-queue/': {
@@ -266,9 +361,14 @@ interface AppRouteChildren {
   AppEncodingSourcesRoute: typeof AppEncodingSourcesRoute
   AppRuntimesIdRoute: typeof AppRuntimesIdRoute
   AppRuntimesRegisterRoute: typeof AppRuntimesRegisterRoute
+  AppSettingsOrganizationRoute: typeof AppSettingsOrganizationRoute
   AppWorkQueueIdRoute: typeof AppWorkQueueIdRoute
+  AppAuditIndexRoute: typeof AppAuditIndexRoute
   AppEncodingIndexRoute: typeof AppEncodingIndexRoute
+  AppOperationsIndexRoute: typeof AppOperationsIndexRoute
+  AppPoliciesIndexRoute: typeof AppPoliciesIndexRoute
   AppRuntimesIndexRoute: typeof AppRuntimesIndexRoute
+  AppSimulationsIndexRoute: typeof AppSimulationsIndexRoute
   AppWorkQueueIndexRoute: typeof AppWorkQueueIndexRoute
   AppEncodingIrIdRoute: typeof AppEncodingIrIdRoute
 }
@@ -279,9 +379,14 @@ const AppRouteChildren: AppRouteChildren = {
   AppEncodingSourcesRoute: AppEncodingSourcesRoute,
   AppRuntimesIdRoute: AppRuntimesIdRoute,
   AppRuntimesRegisterRoute: AppRuntimesRegisterRoute,
+  AppSettingsOrganizationRoute: AppSettingsOrganizationRoute,
   AppWorkQueueIdRoute: AppWorkQueueIdRoute,
+  AppAuditIndexRoute: AppAuditIndexRoute,
   AppEncodingIndexRoute: AppEncodingIndexRoute,
+  AppOperationsIndexRoute: AppOperationsIndexRoute,
+  AppPoliciesIndexRoute: AppPoliciesIndexRoute,
   AppRuntimesIndexRoute: AppRuntimesIndexRoute,
+  AppSimulationsIndexRoute: AppSimulationsIndexRoute,
   AppWorkQueueIndexRoute: AppWorkQueueIndexRoute,
   AppEncodingIrIdRoute: AppEncodingIrIdRoute,
 }
