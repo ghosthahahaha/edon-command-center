@@ -12,6 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
+import { Route as AppEncodingIndexRouteImport } from './routes/_app/encoding/index'
+import { Route as AppEncodingConnectorsRouteImport } from './routes/_app/encoding/connectors'
+import { Route as AppEncodingSourcesRouteImport } from './routes/_app/encoding/sources'
+import { Route as AppRuntimesIndexRouteImport } from './routes/_app/runtimes/index'
+import { Route as AppRuntimesRegisterRouteImport } from './routes/_app/runtimes/register'
 import { Route as AppWorkQueueIndexRouteImport } from './routes/_app/work-queue/index'
 import { Route as AppWorkQueueIdRouteImport } from './routes/_app/work-queue/$id'
 
@@ -29,6 +34,31 @@ const AppDashboardRoute = AppDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AppRoute,
 } as any)
+const AppEncodingIndexRoute = AppEncodingIndexRouteImport.update({
+  id: '/encoding/',
+  path: '/encoding/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppEncodingConnectorsRoute = AppEncodingConnectorsRouteImport.update({
+  id: '/encoding/connectors',
+  path: '/encoding/connectors',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppEncodingSourcesRoute = AppEncodingSourcesRouteImport.update({
+  id: '/encoding/sources',
+  path: '/encoding/sources',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppRuntimesIndexRoute = AppRuntimesIndexRouteImport.update({
+  id: '/runtimes/',
+  path: '/runtimes/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppRuntimesRegisterRoute = AppRuntimesRegisterRouteImport.update({
+  id: '/runtimes/register',
+  path: '/runtimes/register',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppWorkQueueIndexRoute = AppWorkQueueIndexRouteImport.update({
   id: '/work-queue/',
   path: '/work-queue/',
@@ -43,13 +73,23 @@ const AppWorkQueueIdRoute = AppWorkQueueIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof AppDashboardRoute
+  '/encoding/connectors': typeof AppEncodingConnectorsRoute
+  '/encoding/sources': typeof AppEncodingSourcesRoute
+  '/runtimes/register': typeof AppRuntimesRegisterRoute
   '/work-queue/$id': typeof AppWorkQueueIdRoute
+  '/encoding/': typeof AppEncodingIndexRoute
+  '/runtimes/': typeof AppRuntimesIndexRoute
   '/work-queue/': typeof AppWorkQueueIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof AppDashboardRoute
+  '/encoding/connectors': typeof AppEncodingConnectorsRoute
+  '/encoding/sources': typeof AppEncodingSourcesRoute
+  '/runtimes/register': typeof AppRuntimesRegisterRoute
   '/work-queue/$id': typeof AppWorkQueueIdRoute
+  '/encoding': typeof AppEncodingIndexRoute
+  '/runtimes': typeof AppRuntimesIndexRoute
   '/work-queue': typeof AppWorkQueueIndexRoute
 }
 export interface FileRoutesById {
@@ -57,20 +97,48 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_app': typeof AppRouteWithChildren
   '/_app/dashboard': typeof AppDashboardRoute
+  '/_app/encoding/connectors': typeof AppEncodingConnectorsRoute
+  '/_app/encoding/sources': typeof AppEncodingSourcesRoute
+  '/_app/runtimes/register': typeof AppRuntimesRegisterRoute
   '/_app/work-queue/$id': typeof AppWorkQueueIdRoute
+  '/_app/encoding/': typeof AppEncodingIndexRoute
+  '/_app/runtimes/': typeof AppRuntimesIndexRoute
   '/_app/work-queue/': typeof AppWorkQueueIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/work-queue/$id' | '/work-queue/'
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/encoding/connectors'
+    | '/encoding/sources'
+    | '/runtimes/register'
+    | '/work-queue/$id'
+    | '/encoding/'
+    | '/runtimes/'
+    | '/work-queue/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/work-queue/$id' | '/work-queue'
+  to:
+    | '/'
+    | '/dashboard'
+    | '/encoding/connectors'
+    | '/encoding/sources'
+    | '/runtimes/register'
+    | '/work-queue/$id'
+    | '/encoding'
+    | '/runtimes'
+    | '/work-queue'
   id:
     | '__root__'
     | '/'
     | '/_app'
     | '/_app/dashboard'
+    | '/_app/encoding/connectors'
+    | '/_app/encoding/sources'
+    | '/_app/runtimes/register'
     | '/_app/work-queue/$id'
+    | '/_app/encoding/'
+    | '/_app/runtimes/'
     | '/_app/work-queue/'
   fileRoutesById: FileRoutesById
 }
@@ -102,6 +170,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppDashboardRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/encoding/': {
+      id: '/_app/encoding/'
+      path: '/encoding'
+      fullPath: '/encoding/'
+      preLoaderRoute: typeof AppEncodingIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/encoding/connectors': {
+      id: '/_app/encoding/connectors'
+      path: '/encoding/connectors'
+      fullPath: '/encoding/connectors'
+      preLoaderRoute: typeof AppEncodingConnectorsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/encoding/sources': {
+      id: '/_app/encoding/sources'
+      path: '/encoding/sources'
+      fullPath: '/encoding/sources'
+      preLoaderRoute: typeof AppEncodingSourcesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/runtimes/': {
+      id: '/_app/runtimes/'
+      path: '/runtimes'
+      fullPath: '/runtimes/'
+      preLoaderRoute: typeof AppRuntimesIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/runtimes/register': {
+      id: '/_app/runtimes/register'
+      path: '/runtimes/register'
+      fullPath: '/runtimes/register'
+      preLoaderRoute: typeof AppRuntimesRegisterRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/work-queue/': {
       id: '/_app/work-queue/'
       path: '/work-queue'
@@ -121,13 +224,23 @@ declare module '@tanstack/react-router' {
 
 interface AppRouteChildren {
   AppDashboardRoute: typeof AppDashboardRoute
+  AppEncodingConnectorsRoute: typeof AppEncodingConnectorsRoute
+  AppEncodingSourcesRoute: typeof AppEncodingSourcesRoute
+  AppRuntimesRegisterRoute: typeof AppRuntimesRegisterRoute
   AppWorkQueueIdRoute: typeof AppWorkQueueIdRoute
+  AppEncodingIndexRoute: typeof AppEncodingIndexRoute
+  AppRuntimesIndexRoute: typeof AppRuntimesIndexRoute
   AppWorkQueueIndexRoute: typeof AppWorkQueueIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppDashboardRoute: AppDashboardRoute,
+  AppEncodingConnectorsRoute: AppEncodingConnectorsRoute,
+  AppEncodingSourcesRoute: AppEncodingSourcesRoute,
+  AppRuntimesRegisterRoute: AppRuntimesRegisterRoute,
   AppWorkQueueIdRoute: AppWorkQueueIdRoute,
+  AppEncodingIndexRoute: AppEncodingIndexRoute,
+  AppRuntimesIndexRoute: AppRuntimesIndexRoute,
   AppWorkQueueIndexRoute: AppWorkQueueIndexRoute,
 }
 
