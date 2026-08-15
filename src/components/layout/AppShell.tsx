@@ -298,8 +298,15 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                           <li key={n.id} className="px-3 py-2.5">
                             <div className="flex items-center gap-2">
                               <StatusPill
-                                value={n.tone === "danger" ? "Critical" : n.tone === "warning" ? "High" : "Low"}
-                                tone={n.tone === "info" ? "info" : undefined}
+                                value={
+                                  n.tone === "danger"
+                                    ? "Critical"
+                                    : n.tone === "warning"
+                                      ? "High"
+                                      : n.tone === "info"
+                                        ? "Moderate"
+                                        : "Low"
+                                }
                               />
                               <span className="text-xs text-muted-foreground">{formatDateTime(n.at)}</span>
                             </div>
